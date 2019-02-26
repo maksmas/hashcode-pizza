@@ -8,6 +8,8 @@ public class Slice {
     public int tCount;
     public int mCount;
 
+    public int tmpScore;
+
     public Slice(int x0, int y0, int x1, int y1) {
         this.x0 = x0;
         this.y0 = y0;
@@ -27,6 +29,7 @@ public class Slice {
                 ", y1=" + y1 +
                 ", tCount=" + tCount +
                 ", mCount=" + mCount +
+                ", score=" + tmpScore +
                 '}';
     }
 }

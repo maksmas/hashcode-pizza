@@ -20,6 +20,10 @@ public class Cell {
         return content;
     }
 
+    public void setContent(char content) {
+        this.content = content;
+    }
+
     public int getX() {
         return x;
     }
