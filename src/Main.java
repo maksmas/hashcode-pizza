@@ -11,11 +11,8 @@ import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) throws IOException, URISyntaxException {
-        Input input = new Reader().read(FileNames.example);
+        Input input = new Reader().read(FileNames.big);
         Pizza pizza = new Pizza(input);
-
-        // todo debug
-        System.out.println(pizza);
 
         List<Pattern> allPatterns = Patterns.get(input.getMinIngredients(), input.getMaxCells()).stream()
                 .filter(pattern -> pattern.getDx() <= input.getCols() && pattern.getDy() <= input.getRows())
@@ -23,17 +20,21 @@ public class Main {
                 .collect(Collectors.toList());
 
         while (!allPatterns.isEmpty()) {
+            System.out.println(
+                    "Cuts: " + pizza.getCuts().size() +
+                    " Patterns: " + allPatterns.size() +
+                    " t count: " + pizza.gettCount() +
+                    " m count: " + pizza.getmCount());
             Optional<Slice> bestSlice = pizza.findBestSlice(allPatterns.get(0));
 
             if (bestSlice.isPresent()) {
                 pizza.cut(bestSlice.get());
-
-                System.out.println(pizza);
             } else {
                 allPatterns.remove(0);
             }
+
         }
 
-        new Writer().write(pizza.getCuts(), "example.out");
+        new Writer().write(pizza.getCuts(), "big.out");
     }
 }

@@ -1,7 +1,5 @@
 package entities;
 
-import dto.Cell;
-
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
@@ -10,7 +8,7 @@ public class Input {
     private int cols;
     private int minIngredients;
     private int maxCells;
-    private Cell[][] pizza;
+    private char[][] pizza;
 
     private Input(Builder builder) {
         this.rows = builder.rows;
@@ -45,7 +43,7 @@ public class Input {
         return maxCells;
     }
 
-    public Cell[][] getPizza() {
+    public char[][] getPizza() {
         return pizza;
     }
 
@@ -54,7 +52,7 @@ public class Input {
         private int cols;
         private int minIngredients;
         private int maxCells;
-        private Cell[][] pizza;
+        private char[][] pizza;
         private int currentRow;
 
         public Builder(int rows, int cols, int minIngredients, int maxCells) {
@@ -64,14 +62,14 @@ public class Input {
             this.minIngredients = minIngredients;
             this.maxCells = maxCells;
 
-            pizza = new Cell[rows][];
+            pizza = new char[rows][];
         }
 
         public Builder addLine(String line) {
-            Cell[] row = new Cell[this.cols];
+            char[] row = new char[this.cols];
 
             for (int i = 0; i < this.cols; ++i) {
-                row[i] = new Cell(line.charAt(i), currentRow, i);
+                row[i] = line.charAt(i);
             }
 
             pizza[currentRow] = row;
